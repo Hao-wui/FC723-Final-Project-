@@ -21,12 +21,13 @@ for x1 in seats:
 
 
 def Produce_random_booking_reference():
-    used_references = []
+    used_references = []#Generates a list to store serial numbers
 
     while True:
-        reference = ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(8))
-        if reference not in used_references:
-            used_references.append(reference)
+        reference = ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(8))#Generate sequence number
+        if reference not in used_references:#Check whether the serial number is duplicate
+            used_references.append(reference)#If it does not repeat, it is added to the list,
+            # otherwise it is regenerated until it does not repeat
             return reference
 
 # 示例用法
@@ -34,22 +35,18 @@ def Produce_random_booking_reference():
 
 
 def Check_availability_of_seat(c):
-        if dic[c]=="F":
+        if dic[c]=="F":#Different situations arise through different seat states
             print("This seat can be reserved")
         elif dic[c]=="R":
             print("This seat has been reserved,Please re-select")
-            # c = input("Please select the seat you want")
-            # Check_availability_of_seat(c)
         elif dic[c]=="Not selectable" or dic[c]=="Not selectable":
             print("This seat can not be reserved,Please re-select")
-            # c = input("Please select the seat you want")
-            # Check_availability_of_seat(c)
 def Book_a_seat():
-
+    # Different situations arise through different seat states
     pprint.pprint(seats)
     result=input("Please enter the seat to book")
-    result2=dic[result]
-    if result2=="F":
+    result2=dic[result]#Check seat availability
+    if result2=="F":#Collect user information
         print("You can reserve,Please give details")#passport number, first name, last name, seat row and seat column to be maintained in a database table
         passport_number=input("please input passport number")
         first_name=input("please input first name")
@@ -62,8 +59,8 @@ def Book_a_seat():
             'passport_number': passport_number,
             'first_name': first_name,
             'last_name': last_name
-        }
-        dic[result]="R"
+        }#The user's information is stored by serial number
+        dic[result]="R"#Update seat status
 
         print("You have successfully reserve ,the booking reference is",booking_reference)
     elif result2=="R":
@@ -71,16 +68,16 @@ def Book_a_seat():
     elif result2=="Not selectable":
         print("This seat can not be reserved,Please re-select")
 def Free_a_seat():
-    result=input("Please enter the seat number  you wish to refund")
+    result=input("Please enter the seat number  you wish to refund")#Different situations arise through different seat states
     reference=(input("Please enter the reference number"))
     result2=dic[result]
     if result2=="R":
         print("You have successfully refund")
-        del dic[reference]
-        dic[result]="F"
+        del dic[reference]#Deleted stored user information
+        dic[result]="F"#Update seat status
     else:
         print("Input error, please re-enter")
-def Show_booking_state():
+def Show_booking_state()::#Using pprint makes viewing the seat situation more convenient and intuitive
     pprint.pprint(seats)
     for sublist in seats:
         for seat in sublist:
@@ -96,7 +93,7 @@ def Show_booking_state():
 def Exit_program():
     print("You are welcome to use again next time")
 
-while True:
+while True:#Allow users to choose according to the situation
     option = int(input("Please select number:""\n\t"
                    "1. Check availability of seat\n\t"
                    "2. Book a seat\n\t"

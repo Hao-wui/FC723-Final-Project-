@@ -23,18 +23,15 @@ for x1 in seats:
     dic["S"]="Not selectable"
 
 def Check_availability_of_seat(c):
-        if dic[c]=="F":
+        if dic[c]=="F":#Different situations arise through different seat states
             print("This seat can be reserved")
         elif dic[c]=="R":
             print("This seat has been reserved,Please re-select")
-            # c = input("Please select the seat you want")
-            # Check_availability_of_seat(c)
         elif dic[c]=="Not selectable" or dic[c]=="Not selectable":
             print("This seat can not be reserved,Please re-select")
-            # c = input("Please select the seat you want")
-            # Check_availability_of_seat(c)
+
 def Book_a_seat():
-    pprint.pprint(seats)
+    pprint.pprint(seats)#Different situations arise through different seat states
     result=input("Please enter the seat to book")
     result2=dic[result]
     if result2=="F":
@@ -45,7 +42,7 @@ def Book_a_seat():
     elif result2=="Not selectable":
         print("This seat can not be reserved,Please re-select")
 def Free_a_seat():
-    result=input("Please enter the seat you wish to refund")
+    result=input("Please enter the seat you wish to refund")##Different situations arise through different seat states
     result2=dic[result]
     if result2=="R":
         print("You have successfully refund")
@@ -53,7 +50,7 @@ def Free_a_seat():
     else:
         print("Input error, please re-enter")
 def Show_booking_state():
-    pprint.pprint(seats)
+    pprint.pprint(seats)#Using pprint makes viewing the seat situation more convenient and intuitive
     for sublist in seats:
         for seat in sublist:
             if seat == "...":
@@ -68,7 +65,7 @@ def Show_booking_state():
 def Exit_program():
     print("You are welcome to use again next time")
 
-while True:
+while True:#Allow users to choose according to the situation
     option = int(input("Please select number:""\n\t"
                    "1. Check availability of seat\n\t"
                    "2. Book a seat\n\t"
