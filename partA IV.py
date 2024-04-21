@@ -45,12 +45,10 @@ def Book_a_seat():
     elif result2=="Not selectable":
         print("This seat can not be reserved,Please re-select")
 def Free_a_seat():
-    result=input("Please enter the seat number  you wish to refund")
-    reference=(input("Please enter the reference number"))
+    result=input("Please enter the seat you wish to refund")
     result2=dic[result]
     if result2=="R":
         print("You have successfully refund")
-        del dic[reference]
         dic[result]="F"
     else:
         print("Input error, please re-enter")
@@ -89,7 +87,7 @@ while True:
         Show_booking_state()
     elif option==5:
         Exit_program()
-        break#1
+        break
 
 
 
