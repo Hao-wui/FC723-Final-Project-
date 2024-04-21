@@ -77,7 +77,7 @@ def Free_a_seat():
         dic[result]="F"#Update seat status
     else:
         print("Input error, please re-enter")
-def Show_booking_state()::#Using pprint makes viewing the seat situation more convenient and intuitive
+def Show_booking_state():#Using pprint makes viewing the seat situation more convenient and intuitive
     pprint.pprint(seats)
     for sublist in seats:
         for seat in sublist:
